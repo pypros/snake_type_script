@@ -135,7 +135,7 @@ class Snake {
         this._randint(0, this.boardGame.sizeRaw - 1),
         this._randint(0, this.boardGame.sizeColumn - 1),
       ];
-      if (!this._getFullSnake().includes(food)) {
+      if (!this.preventModificationSnake(food)) {
         this.food = food;
         break;
       }
@@ -156,12 +156,10 @@ class Snake {
     }
   }
 
-  preventBackwardMovement(nextSpot) {
-    if (!this._getFullSnake().includes(nextSpot)) {
-      return true;
-    } else {
-      return false;
-    }
+  preventModificationSnake(nextSpot) {
+    return this._getFullSnake().some((element) =>
+      this._equals(element, nextSpot)
+    );
   }
 
   mapKeyValueOnDirection(keyValue) {
@@ -203,21 +201,23 @@ class Snake {
     }
     let newPositionHead = [x, y];
     if (this.checkBorders(x, y)) {
-      if (this.preventBackwardMovement(newPositionHead)) {
+      if (!this.preventModificationSnake(newPositionHead)) {
         if (this._equals(newPositionHead, this.food)) {
           this.body.push(this.head);
           this.head = newPositionHead;
           this.genFood();
+        } else {
+          this.move(newPositionHead);
         }
-        this.move(newPositionHead);
       }
     }
   }
 }
+
 const sleep = (waitTimeInMs) =>
   new Promise((resolve) => setTimeout(resolve, waitTimeInMs));
 
-let snake = new Snake(10, 10);
+const snake = new Snake(5, 5);
 while (true) {
   snake.boardGame.clear();
   for (const element of snake) {
