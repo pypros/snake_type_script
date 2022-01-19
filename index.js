@@ -170,7 +170,7 @@ class Snake {
       "\u001b[B": "down",
       "\u001b[C": "right",
       "\u001b[D": "left",
-      "\u0003\u0003\u0003": "exit",
+      "\u001b": "exit",
     };
     return direction[keyValue] || "Wrong key";
   }
@@ -229,7 +229,7 @@ while (true) {
   await snake.changeDirection();
   // snake.forEach((element) => console.log(element))
   // await sleep(10000);
-  if (snake.keyboard.keyValue === "\u0003\u0003\u0003") {
+  if (snake.keyboard.keyValue === "\u001b") {
     break;
   }
 }
