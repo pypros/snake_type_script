@@ -220,7 +220,7 @@ class Snake {
 const sleep = (waitTimeInMs) =>
   new Promise((resolve) => setTimeout(resolve, waitTimeInMs));
 
-const snake = new Snake(5, 5);
+const snake = new Snake(10, 10);
 while (true) {
   snake.boardGame.clear();
   for (const element of snake) {
