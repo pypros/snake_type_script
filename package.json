@@ -5,7 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "snake": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --write index.js",
+    "eslint": "eslint index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +17,9 @@
     "readline": "^1.3.0"
   },
   "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
     "prettier": "^2.5.1"
   }
 }
