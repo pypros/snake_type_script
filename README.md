@@ -24,4 +24,15 @@ Run of game
 node index.js
 ```
 
+Running game
+```bash
+-------
+-T0000-
+-0xxxx-
+-00000-
+-00000-
+-00000-
+-------
+```
+
 To exit from game push on keyboard `ESC`.
