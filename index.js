@@ -39,7 +39,8 @@ class BoardGameConsole {
     });
   }
 
-  printGame() {
+  printGame(points) {
+    console.log(`Points: ${points}`);
     console.log(
       Array(this.sizeRaw + 2)
         .fill("-")
@@ -91,6 +92,7 @@ class Snake {
       [1, 2],
       [1, 3],
     ];
+    this.points = 0;
     this.head = [1, 4];
     this.keyboard = new Keyboard();
     this.boardGame = new BoardGameConsole(this.sizeRaw, this.sizeColumn);
@@ -205,6 +207,7 @@ class Snake {
         if (this._equals(newPositionHead, this.food)) {
           this.body.push(this.head);
           this.head = newPositionHead;
+          this.points++;
           this.genFood();
         } else {
           this.move(newPositionHead);
@@ -225,7 +228,7 @@ while (true) {
   }
   snake.boardGame.drawPixel([...snake.food, "T"]);
   console.clear();
-  snake.boardGame.printGame();
+  snake.boardGame.printGame(snake.points);
   await snake.changeDirection();
   // snake.forEach((element) => console.log(element))
   // await sleep(10000);
