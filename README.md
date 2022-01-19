@@ -19,6 +19,23 @@ Run liner.
 $ npm run eslint
 ```
 
+Run tests.
+```bash
+$ npm run test
+
+> snake_js@1.0.0 test
+> jest
+
+ PASS  tests/snake.test.js
+  √ Snake init (2 ms)
+                                                                                                                                                                                         
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.492 s, estimated 1 s
+Ran all test suites.
+```
+
 Run of game
 ```bash
 node index.js
