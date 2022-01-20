@@ -7,11 +7,15 @@
   "scripts": {
     "snake": "node index.js",
     "test": "jest",
-    "prettier": "prettier --write index.js tests/",
-    "eslint": "eslint index.js"
+    "prettier": "prettier --write index.js src tests",
+    "eslint": "eslint index.js src tests"
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "npm": ">=8.3.0",
+    "node": ">=17.3.0"
+  },
   "dependencies": {
     "keypress": "^0.2.1",
     "readline": "^1.3.0"
@@ -19,7 +23,12 @@
   "devDependencies": {
     "eslint": "^8.7.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint-config-node": "^2.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.4.7",
     "prettier": "^2.5.1"
   }

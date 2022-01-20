@@ -59,3 +59,14 @@ Points: 0
 ```
 
 To exit from game push on keyboard `ESC`.
+
+Use ful links for config env:
+Formater and linter:
+```
+https://gist.github.com/bradtraversy/aab26d1e8983d9f8d79be1a9ca894ab4
+```  
+  
+Testing Framework
+```
+https://jestjs.io/docs/getting-started
+```
