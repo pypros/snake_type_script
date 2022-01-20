@@ -18,5 +18,6 @@ module.exports = {
     "no-process-exit": "off",
     "object-shorthand": "off",
     "class-methods-use-this": "off",
+    "import/extensions": "off",
   },
 };
