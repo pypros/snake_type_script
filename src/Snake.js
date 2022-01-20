@@ -1,5 +1,5 @@
-import { Keyboard } from "./Keyboard";
-import BoardGameConsole from "./BoardGameConsole";
+import { Keyboard } from "./Keyboard.js";
+import BoardGameConsole from "./BoardGameConsole.js";
 
 export default class Snake {
   constructor(sizeRaw, sizeColumn) {

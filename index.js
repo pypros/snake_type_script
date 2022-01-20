@@ -1,4 +1,4 @@
-import Snake from "./src/Snake";
+import Snake from "./src/Snake.js";
 
 const snake = new Snake(10, 10);
 for (;;) {
