@@ -17,7 +17,7 @@ export async function readStdinSync() {
     process.stdin.setRawMode(true);
     process.stdin.setEncoding("utf8");
     process.stdin.resume();
-    process.stdin.on("data", (key) => {
+    process.stdin.once("data", (key) => {
       process.stdin.pause();
       resolve(key);
     });
