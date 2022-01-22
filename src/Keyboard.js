@@ -23,14 +23,3 @@ export async function readStdinSync() {
     });
   });
 }
-
-export class Keyboard {
-  constructor() {
-    this.keyValue = null;
-  }
-
-  async getKeyValue() {
-    this.keyValue = await readStdinSync();
-    return this.keyValue;
-  }
-}

@@ -11,7 +11,7 @@ async function main() {
   console.clear();
   snake.boardGame.printGame(snake.points);
   await snake.changeDirection();
-  if (snake.keyboard.keyValue !== "\u001b") {
+  if (snake.keyboard !== "\u001b") {
     main();
   }
 }

@@ -1,4 +1,4 @@
-import { Keyboard } from "./Keyboard.js";
+import { readStdinSync } from "./Keyboard.js";
 import BoardGameConsole from "./BoardGameConsole.js";
 
 export default class Snake {
@@ -12,7 +12,7 @@ export default class Snake {
       [1, 3],
       [1, 4], // head
     ];
-    this.keyboard = new Keyboard();
+    this.keyboard = "";
     this.boardGame = new BoardGameConsole(this.sizeRaw, this.sizeColumn);
     this.food = [0, 0];
     this.length = this.body.length;
@@ -86,8 +86,8 @@ export default class Snake {
   }
 
   async changeDirection() {
-    const keyValue = await this.keyboard.getKeyValue();
-    const direction = this.#mapKeyValueOnDirection(keyValue);
+    this.keyboard = await readStdinSync();
+    const direction = this.#mapKeyValueOnDirection(this.keyboard);
     let [x, y] = this.body.at(-1);
     switch (direction) {
       case "up":
