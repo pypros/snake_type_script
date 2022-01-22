@@ -18,27 +18,17 @@ export default class Snake {
     this.length = [this.tail, ...this.body, this.head].length;
   }
 
-  getFullSnake = () => {
+  #getFullSnake = () => {
     const fullSanke = [this.tail, ...this.body, this.head];
     return fullSanke;
   };
 
   toString() {
-    return JSON.stringify(this.getFullSnake());
+    return JSON.stringify(this.#getFullSnake());
   }
 
   [Symbol.iterator]() {
-    let index = -1;
-    const fullSnake = this.getFullSnake();
-    return {
-      next: () => {
-        index += 1;
-        if (index < fullSnake.length) {
-          return { value: fullSnake[index], done: false };
-        }
-        return { done: true };
-      },
-    };
+    return this.#getFullSnake()[Symbol.iterator]();
   }
 
   move(nextSpot) {
@@ -47,7 +37,7 @@ export default class Snake {
     this.tail = this.body.shift();
   }
 
-  static randint(min, max) {
+  #randint(min, max) {
     const randomInteger = Math.floor(Math.random() * (max - min + 1)) + min;
     return randomInteger;
   }
@@ -55,8 +45,8 @@ export default class Snake {
   genFood() {
     for (;;) {
       const food = [
-        Snake.randint(0, this.boardGame.sizeRaw - 1),
-        Snake.randint(0, this.boardGame.sizeColumn - 1),
+        this.#randint(0, this.boardGame.sizeRaw - 1),
+        this.#randint(0, this.boardGame.sizeColumn - 1),
       ];
       if (!this.preventModificationSnake(food)) {
         this.food = food;
@@ -65,7 +55,7 @@ export default class Snake {
     }
   }
 
-  static equals(firstArray, secondArray) {
+  #equals(firstArray, secondArray) {
     return (
       firstArray.length === secondArray.length &&
       firstArray.every((v, i) => v === secondArray[i])
@@ -73,19 +63,19 @@ export default class Snake {
   }
 
   eatFood(spot) {
-    if (Snake.equals(this.food, spot)) {
+    if (this.#equals(this.food, spot)) {
       this.body.push(this.head);
       this.head = spot;
     }
   }
 
   preventModificationSnake(nextSpot) {
-    return this.getFullSnake().some((element) =>
-      Snake.equals(element, nextSpot)
+    return this.#getFullSnake().some((element) =>
+      this.#equals(element, nextSpot)
     );
   }
 
-  static mapKeyValueOnDirection(keyValue) {
+  #mapKeyValueOnDirection(keyValue) {
     const direction = {
       "\u001b[A": "up",
       "\u001b[B": "down",
@@ -104,7 +94,7 @@ export default class Snake {
 
   async changeDirection() {
     const keyValue = await this.keyboard.getKeyValue();
-    const direction = Snake.mapKeyValueOnDirection(keyValue);
+    const direction = this.#mapKeyValueOnDirection(keyValue);
     let [x, y] = this.head;
     switch (direction) {
       case "up":
@@ -125,7 +115,7 @@ export default class Snake {
     const newPositionHead = [x, y];
     if (this.checkBorders(x, y)) {
       if (!this.preventModificationSnake(newPositionHead)) {
-        if (Snake.equals(newPositionHead, this.food)) {
+        if (this.#equals(newPositionHead, this.food)) {
           this.body.push(this.head);
           this.head = newPositionHead;
           this.points += 1;
