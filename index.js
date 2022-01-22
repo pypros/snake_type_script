@@ -3,8 +3,9 @@ import Snake from "./src/Snake.js";
 const snake = new Snake(10, 10);
 for (;;) {
   snake.boardGame.clear();
-  for (const [x, y] of snake) {
-    snake.boardGame.drawPixel([x, y, "x"]);
+  const snakeToDraw = snake.getFullSnake();
+  for (let i = 0; i < snakeToDraw.length; i += 1) {
+    snake.boardGame.drawPixel([...snakeToDraw[i], "x"]);
   }
   snake.boardGame.drawPixel([...snake.food, "T"]);
   console.clear();
