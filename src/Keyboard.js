@@ -18,8 +18,8 @@ export async function readStdinSync() {
     process.stdin.setEncoding("utf8");
     process.stdin.resume();
     process.stdin.once("data", (key) => {
-      process.stdin.pause();
       resolve(key);
+      process.stdin.pause();
     });
   });
 }
