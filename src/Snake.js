@@ -5,36 +5,30 @@ export default class Snake {
   constructor(sizeRaw, sizeColumn) {
     this.sizeRaw = sizeRaw;
     this.sizeColumn = sizeColumn;
-    this.tail = [1, 1];
+    this.points = 0;
     this.body = [
+      [1, 1], // tail
       [1, 2],
       [1, 3],
+      [1, 4], // head
     ];
-    this.points = 0;
-    this.head = [1, 4];
     this.keyboard = new Keyboard();
     this.boardGame = new BoardGameConsole(this.sizeRaw, this.sizeColumn);
     this.food = [0, 0];
-    this.length = [this.tail, ...this.body, this.head].length;
+    this.length = this.body.length;
   }
 
-  getFullSnake = () => {
-    const fullSanke = [this.tail, ...this.body, this.head];
-    return fullSanke;
-  };
+  getFullSnake() {
+    return this.body;
+  }
 
   toString() {
     return JSON.stringify(this.getFullSnake());
   }
 
-  [Symbol.iterator]() {
-    return this.getFullSnake()[Symbol.iterator]();
-  }
-
   move(nextSpot) {
-    this.body.push(this.head);
-    this.head = nextSpot;
-    this.tail = this.body.shift();
+    this.body.push(nextSpot);
+    this.body.shift();
   }
 
   #randint(min, max) {
@@ -64,8 +58,7 @@ export default class Snake {
 
   eatFood(spot) {
     if (this.#equals(this.food, spot)) {
-      this.body.push(this.head);
-      this.head = spot;
+      this.body.push(spot);
     }
   }
 
@@ -95,7 +88,7 @@ export default class Snake {
   async changeDirection() {
     const keyValue = await this.keyboard.getKeyValue();
     const direction = this.#mapKeyValueOnDirection(keyValue);
-    let [x, y] = this.head;
+    let [x, y] = this.body.at(-1);
     switch (direction) {
       case "up":
         x -= 1;
@@ -116,8 +109,7 @@ export default class Snake {
     if (this.checkBorders(x, y)) {
       if (!this.preventModificationSnake(newPositionHead)) {
         if (this.#equals(newPositionHead, this.food)) {
-          this.body.push(this.head);
-          this.head = newPositionHead;
+          this.body.push(newPositionHead);
           this.points += 1;
           this.genFood();
         } else {

@@ -4,9 +4,8 @@ const snake = new Snake(10, 10);
 
 async function main() {
   snake.boardGame.clear();
-  const snakeToDraw = snake.getFullSnake();
-  for (let i = 0; i < snakeToDraw.length; i += 1) {
-    snake.boardGame.drawPixel([...snakeToDraw[i], "x"]);
+  for (let i = 0; i < snake.body.length; i += 1) {
+    snake.boardGame.drawPixel([...snake.body[i], "x"]);
   }
   snake.boardGame.drawPixel([...snake.food, "T"]);
   console.clear();
