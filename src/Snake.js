@@ -18,17 +18,17 @@ export default class Snake {
     this.length = [this.tail, ...this.body, this.head].length;
   }
 
-  #getFullSnake = () => {
+  getFullSnake = () => {
     const fullSanke = [this.tail, ...this.body, this.head];
     return fullSanke;
   };
 
   toString() {
-    return JSON.stringify(this.#getFullSnake());
+    return JSON.stringify(this.getFullSnake());
   }
 
   [Symbol.iterator]() {
-    return this.#getFullSnake()[Symbol.iterator]();
+    return this.getFullSnake()[Symbol.iterator]();
   }
 
   move(nextSpot) {
@@ -70,7 +70,7 @@ export default class Snake {
   }
 
   preventModificationSnake(nextSpot) {
-    return this.#getFullSnake().some((element) =>
+    return this.getFullSnake().some((element) =>
       this.#equals(element, nextSpot)
     );
   }
