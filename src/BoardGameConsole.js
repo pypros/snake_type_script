@@ -30,6 +30,7 @@ export default class BoardGameConsole {
         .fill("-")
         .join("")
     );
+    console.log(`Exit: ESC`);
   }
 
   drawPixel(pixel) {
