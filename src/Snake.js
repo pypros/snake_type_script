@@ -78,16 +78,18 @@ export default class Snake {
         break;
     }
     const newPositionHead = [x, y];
-    if (this.checkBorders(x, y)) {
-      if (!this.preventModificationSnake(newPositionHead)) {
-        if (this.#equals(newPositionHead, this.food)) {
-          this.body.push(newPositionHead);
-          this.points += 1;
-          this.genFood();
-        } else {
-          this.move(newPositionHead);
-        }
-      }
+    const newPointIsInBorders = this.checkBorders(x, y);
+    const newPointIsNotInBody = !this.preventModificationSnake(newPositionHead);
+    const newPointCanMove = newPointIsInBorders && newPointIsNotInBody;
+    const newPointIsFood = this.#equals(newPositionHead, this.food);
+
+    if (newPointCanMove && newPointIsFood) {
+      this.body.push(newPositionHead);
+      this.points += 1;
+      this.genFood();
+    }
+    else if(newPointCanMove) {
+      this.move(newPositionHead);
     }
   }
 }
