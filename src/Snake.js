@@ -43,24 +43,19 @@ export default class Snake {
     );
   }
 
-  eatFood(spot) {
-    if (this.#equals(this.food, spot)) {
-      this.body.push(spot);
-    }
-  }
-
   preventModificationSnake(nextSpot) {
     return this.body.some((element) => this.#equals(element, nextSpot));
   }
 
   checkBorders(x, y) {
     const xInBorder = x >= 0 && x <= this.sizeRaw - 1;
-    const yInBorder = y >= 0 && y <= this.sizeRaw - 1;
+    const yInBorder = y >= 0 && y <= this.sizeColumn - 1;
     return xInBorder && yInBorder;
   }
 
   change(direction) {
     let [x, y] = this.body.at(-1);
+
     switch (direction) {
       case "up":
         x -= 1;
@@ -77,6 +72,7 @@ export default class Snake {
       default:
         break;
     }
+
     const newPositionHead = [x, y];
     const newPointIsInBorders = this.checkBorders(x, y);
     const newPointIsNotInBody = !this.preventModificationSnake(newPositionHead);
@@ -87,8 +83,7 @@ export default class Snake {
       this.body.push(newPositionHead);
       this.points += 1;
       this.genFood();
-    }
-    else if(newPointCanMove) {
+    } else if (newPointCanMove) {
       this.move(newPositionHead);
     }
   }
