@@ -1,5 +1,5 @@
 import Snake from "./src/Snake.js";
-import { readStdinSync } from "./src/Keyboard.js";
+import readStdin from "./src/Keyboard.js";
 import BoardGameConsole from "./src/BoardGameConsole.js";
 
 const sizeRaw = 10;
@@ -14,7 +14,7 @@ async function main() {
   boardGame.drawPixel([...snake.food, "T"]);
   console.clear();
   boardGame.printGame(snake.points);
-  const keyValue = await readStdinSync();
+  const keyValue = await readStdin();
   const mapKeyValue = {
     "\u001b[A": "up",
     "\u001b[B": "down",
