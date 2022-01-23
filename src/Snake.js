@@ -13,10 +13,6 @@ export default class Snake {
     this.length = this.body.length;
   }
 
-  // toString() {
-  //   return JSON.stringify(this.body);
-  // }
-
   move(nextSpot) {
     this.body.push(nextSpot);
     this.body.shift();
