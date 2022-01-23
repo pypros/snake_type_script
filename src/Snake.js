@@ -13,7 +13,7 @@ export default class Snake {
     this.length = this.body.length;
   }
 
-  move(nextSpot) {
+  #move(nextSpot) {
     this.body.push(nextSpot);
     this.body.shift();
   }
@@ -23,13 +23,22 @@ export default class Snake {
     return randomInteger;
   }
 
-  generateFood() {
+  #eatFood(spot){
+    this.body.push(spot);
+    this.points += 1;
+  }
+
+  #preventModificationSnake(nextSpot) {
+    return this.body.some((element) => this.#equals(element, nextSpot));
+  }
+
+  #generateFood() {
     for (;;) {
       const food = [
         this.#randint(0, this.sizeRaw - 1),
         this.#randint(0, this.sizeColumn - 1),
       ];
-      if (!this.preventModificationSnake(food)) {
+      if (!this.#preventModificationSnake(food)) {
         this.food = food;
         break;
       }
@@ -43,11 +52,7 @@ export default class Snake {
     );
   }
 
-  preventModificationSnake(nextSpot) {
-    return this.body.some((element) => this.#equals(element, nextSpot));
-  }
-
-  checkBorders(x, y) {
+  #checkBorders(x, y) {
     const xInBorder = x >= 0 && x <= this.sizeRaw - 1;
     const yInBorder = y >= 0 && y <= this.sizeColumn - 1;
     return xInBorder && yInBorder;
@@ -74,17 +79,17 @@ export default class Snake {
     }
 
     const newPositionHead = [x, y];
-    const newPointIsInBorders = this.checkBorders(x, y);
-    const newPointIsNotInBody = !this.preventModificationSnake(newPositionHead);
+    const newPointIsInBorders = this.#checkBorders(x, y);
+    const newPointIsNotInBody = !this.#preventModificationSnake(newPositionHead);
     const newPointCanMove = newPointIsInBorders && newPointIsNotInBody;
     const newPointIsFood = this.#equals(newPositionHead, this.food);
 
     if (newPointCanMove && newPointIsFood) {
-      this.body.push(newPositionHead);
-      this.points += 1;
-      this.generateFood();
+      this.#eatFood(newPositionHead);
+      this.#generateFood();
     } else if (newPointCanMove) {
-      this.move(newPositionHead);
+      this.#move(newPositionHead);
     }
+
   }
 }
