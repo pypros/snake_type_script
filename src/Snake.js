@@ -23,7 +23,7 @@ export default class Snake {
     return randomInteger;
   }
 
-  #eatFood(spot){
+  #eatFood(spot) {
     this.body.push(spot);
     this.points += 1;
   }
@@ -80,7 +80,8 @@ export default class Snake {
 
     const newPositionHead = [x, y];
     const newPointIsInBorders = this.#checkBorders(x, y);
-    const newPointIsNotInBody = !this.#preventModificationSnake(newPositionHead);
+    const newPointIsNotInBody =
+      !this.#preventModificationSnake(newPositionHead);
     const newPointCanMove = newPointIsInBorders && newPointIsNotInBody;
     const newPointIsFood = this.#equals(newPositionHead, this.food);
 
@@ -90,6 +91,5 @@ export default class Snake {
     } else if (newPointCanMove) {
       this.#move(newPositionHead);
     }
-
   }
 }
