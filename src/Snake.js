@@ -68,17 +68,6 @@ export default class Snake {
     );
   }
 
-  #mapKeyValueOnDirection(keyValue) {
-    const direction = {
-      "\u001b[A": "up",
-      "\u001b[B": "down",
-      "\u001b[C": "right",
-      "\u001b[D": "left",
-      "\u001b": "exit",
-    };
-    return direction[keyValue] || "Wrong key";
-  }
-
   checkBorders(x, y) {
     const xInBorder = x >= 0 && x <= this.boardGame.sizeRaw - 1;
     const yInBorder = y >= 0 && y <= this.boardGame.sizeRaw - 1;
@@ -87,19 +76,18 @@ export default class Snake {
 
   async changeDirection() {
     this.keyboard = await readStdinSync();
-    const direction = this.#mapKeyValueOnDirection(this.keyboard);
     let [x, y] = this.body.at(-1);
-    switch (direction) {
-      case "up":
+    switch (this.keyboard) {
+      case "\u001b[A": // up
         x -= 1;
         break;
-      case "down":
+      case "\u001b[B": // down
         x += 1;
         break;
-      case "right":
+      case "\u001b[C": // right
         y += 1;
         break;
-      case "left":
+      case "\u001b[D": // left
         y -= 1;
         break;
       default:
