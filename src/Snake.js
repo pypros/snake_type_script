@@ -23,7 +23,7 @@ export default class Snake {
     return randomInteger;
   }
 
-  genFood() {
+  generationFood() {
     for (;;) {
       const food = [
         this.#randint(0, this.sizeRaw - 1),
@@ -54,7 +54,7 @@ export default class Snake {
   }
 
   change(direction) {
-    let [x, y] = this.body[this.body.length-1];
+    let [x, y] = this.body[this.body.length - 1];
 
     switch (direction) {
       case "up":
@@ -82,7 +82,7 @@ export default class Snake {
     if (newPointCanMove && newPointIsFood) {
       this.body.push(newPositionHead);
       this.points += 1;
-      this.genFood();
+      this.generationFood();
     } else if (newPointCanMove) {
       this.move(newPositionHead);
     }
