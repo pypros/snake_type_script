@@ -1,5 +1,3 @@
-import BoardGameConsole from "./BoardGameConsole.js";
-
 export default class Snake {
   constructor(sizeRaw, sizeColumn) {
     this.sizeRaw = sizeRaw;
@@ -11,18 +9,13 @@ export default class Snake {
       [1, 3],
       [1, 4], // head
     ];
-    this.boardGame = new BoardGameConsole(this.sizeRaw, this.sizeColumn);
     this.food = [0, 0];
     this.length = this.body.length;
   }
 
-  getFullSnake() {
-    return this.body;
-  }
-
-  toString() {
-    return JSON.stringify(this.getFullSnake());
-  }
+  // toString() {
+  //   return JSON.stringify(this.body);
+  // }
 
   move(nextSpot) {
     this.body.push(nextSpot);
@@ -37,8 +30,8 @@ export default class Snake {
   genFood() {
     for (;;) {
       const food = [
-        this.#randint(0, this.boardGame.sizeRaw - 1),
-        this.#randint(0, this.boardGame.sizeColumn - 1),
+        this.#randint(0, this.sizeRaw - 1),
+        this.#randint(0, this.sizeColumn - 1),
       ];
       if (!this.preventModificationSnake(food)) {
         this.food = food;
@@ -61,14 +54,12 @@ export default class Snake {
   }
 
   preventModificationSnake(nextSpot) {
-    return this.getFullSnake().some((element) =>
-      this.#equals(element, nextSpot)
-    );
+    return this.body.some((element) => this.#equals(element, nextSpot));
   }
 
   checkBorders(x, y) {
-    const xInBorder = x >= 0 && x <= this.boardGame.sizeRaw - 1;
-    const yInBorder = y >= 0 && y <= this.boardGame.sizeRaw - 1;
+    const xInBorder = x >= 0 && x <= this.sizeRaw - 1;
+    const yInBorder = y >= 0 && y <= this.sizeRaw - 1;
     return xInBorder && yInBorder;
   }
 

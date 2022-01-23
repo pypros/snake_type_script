@@ -1,16 +1,19 @@
 import Snake from "./src/Snake.js";
 import { readStdinSync } from "./src/Keyboard.js";
+import BoardGameConsole from "./src/BoardGameConsole.js";
 
-const snake = new Snake(10, 10);
-
+const sizeRaw = 10;
+const sizeColumn = 10;
+const snake = new Snake(sizeRaw, sizeColumn);
+const boardGame = new BoardGameConsole(sizeRaw, sizeColumn);
 async function main() {
-  snake.boardGame.clear();
+  boardGame.clear();
   for (let i = 0; i < snake.body.length; i += 1) {
-    snake.boardGame.drawPixel([...snake.body[i], "x"]);
+    boardGame.drawPixel([...snake.body[i], "x"]);
   }
-  snake.boardGame.drawPixel([...snake.food, "T"]);
+  boardGame.drawPixel([...snake.food, "T"]);
   console.clear();
-  snake.boardGame.printGame(snake.points);
+  boardGame.printGame(snake.points);
   const keyValue = await readStdinSync();
   const mapKeyValue = {
     "\u001b[A": "up",
