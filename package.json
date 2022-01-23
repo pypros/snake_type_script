@@ -7,8 +7,8 @@
   "scripts": {
     "snake": "node index.js",
     "test": "jest",
-    "prettier": "prettier --write index.js src tests",
-    "eslint": "eslint index.js src tests"
+    "formatter": "prettier --write index.js src tests",
+    "linter": "eslint index.js src tests"
   },
   "author": "",
   "license": "ISC",
