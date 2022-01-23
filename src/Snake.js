@@ -1,4 +1,3 @@
-import { readStdinSync } from "./Keyboard.js";
 import BoardGameConsole from "./BoardGameConsole.js";
 
 export default class Snake {
@@ -12,7 +11,6 @@ export default class Snake {
       [1, 3],
       [1, 4], // head
     ];
-    this.keyboard = "";
     this.boardGame = new BoardGameConsole(this.sizeRaw, this.sizeColumn);
     this.food = [0, 0];
     this.length = this.body.length;
@@ -74,20 +72,19 @@ export default class Snake {
     return xInBorder && yInBorder;
   }
 
-  async changeDirection() {
-    this.keyboard = await readStdinSync();
+  change(direction) {
     let [x, y] = this.body.at(-1);
-    switch (this.keyboard) {
-      case "\u001b[A": // up
+    switch (direction) {
+      case "up":
         x -= 1;
         break;
-      case "\u001b[B": // down
+      case "down":
         x += 1;
         break;
-      case "\u001b[C": // right
+      case "right":
         y += 1;
         break;
-      case "\u001b[D": // left
+      case "left":
         y -= 1;
         break;
       default:
