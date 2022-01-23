@@ -54,7 +54,7 @@ export default class Snake {
   }
 
   change(direction) {
-    let [x, y] = this.body.at(-1);
+    let [x, y] = this.body[this.body.length-1];
 
     switch (direction) {
       case "up":
