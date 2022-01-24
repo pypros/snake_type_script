@@ -4,11 +4,12 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ["airbnb-base", "prettier", "plugin:node/recommended"],
-  plugins: ["prettier", "jest"],
+  extends: ["airbnb-typescript/base", "prettier"],
+  plugins: ["import","prettier"],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
+    project: "tsconfig.json"
   },
   rules: {
     "prettier/prettier": "error",

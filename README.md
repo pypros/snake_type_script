@@ -9,14 +9,19 @@ Instalation deps.
 $ npm install
 ```
 
+Run build of code.
+```bash
+$ npm run build
+```
+  
 Run formater of code.
 ```bash
-$ npm run prettier
+$ npm run format
 ```
-
+  
 Run liner.
 ```bash
-$ npm run eslint
+$ npm run lint
 ```
 
 Run tests.
@@ -38,7 +43,9 @@ Ran all test suites.
 
 Run of game
 ```bash
-node index.js
+npm run game
+OR
+node dist/index.js
 ```
 
 Running game
