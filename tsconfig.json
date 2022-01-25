@@ -4,6 +4,7 @@
       "target": "es2017",
       "outDir": "dist",
       "strict": true,
+      "noEmit": false,
       "moduleResolution": "Node",
       "paths": {
         "*": ["./src/*"]
@@ -11,5 +12,6 @@
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "skipLibCheck": true
-    }
+    },
+    "include": ["./src/**/*"]
   }
