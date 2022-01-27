@@ -1,44 +1,33 @@
 {
-  "name": "snake_ts",
-  "version": "1.0.0",
-  "description": "Requierments\r ```bash\r $ node --version\r v17.3.0\r ```",
-  "main": "./dist/index.js",
-  "type": "module",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx ts build ./index.ts",
-    "lint": "eslint . --ext .ts",
-    "format": "prettier index.ts src/ --write",
-    "game": "node dist/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pypros/snake_type_script.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pypros/snake_type_script/issues"
-  },
-  "homepage": "https://github.com/pypros/snake_type_script#readme",
-  "engines": {
-    "npm": ">=8.3.0",
-    "node": ">=17.3.0"
+  "private": true,
+  "version": "0.0.0",
+  "name": "example-typescript",
+  "target": "module",
+  "dependencies": {
+    "typescript": "*"
   },
   "devDependencies": {
-    "@types/node": "^17.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.10.0",
-    "eslint": "^8.7.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^16.1.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.5.1",
-    "typescript": "^4.5.5"
+    "@babel/core": "*",
+    "@babel/preset-env": "*",
+    "@babel/preset-typescript": "*",
+    "@types/jest": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "babel-jest": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-config-airbnb-typescript": "*",
+    "eslint-config-prettier": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-node": "*",
+    "eslint-plugin-prettier": "*",
+    "jest": "*",
+    "prettier": "*"
+  },
+  "scripts": {
+    "lint": "eslint src/ --ext .ts",
+    "format": "prettier src --write",
+    "test": "jest",
+    "build": "npx ts build",
+    "game": "node dist/index.js"
   }
 }

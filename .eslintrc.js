@@ -1,6 +1,5 @@
 module.exports = {
   env: {
-    browser: true,
     es2021: true,
     jest: true,
   },
@@ -8,7 +7,6 @@ module.exports = {
   plugins: ["import","prettier"],
   parserOptions: {
     ecmaVersion: "latest",
-    sourceType: "module",
     project: "tsconfig.json"
   },
   rules: {
